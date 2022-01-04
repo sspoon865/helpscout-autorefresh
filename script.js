@@ -2,45 +2,49 @@
 // @author       Stephen
 // @name         Auto Refresh Helpscout Reports
 // @description  Refresh helpscout.net/reports/all-channels/ page automatically at a set interval.
-// @version      0.1
+// @version      0.2.3
 // @match        *://secure.helpscout.net/reports/all-channels/*
 // @namespace    https://github.com/sspoon865/helpscout-autorefresh
-// @source       https://github.com/sspoon865/helpscout-autorefresh/blob/main/script.js
-// @updateURL    https://github.com/sspoon865/helpscout-autorefresh
-// @downloadURL  https://github.com/sspoon865/helpscout-autorefresh
+// @source       https://raw.githubusercontent.com/sspoon865/helpscout-autorefresh/main/script.js
+// @updateURL    https://raw.githubusercontent.com/sspoon865/helpscout-autorefresh/main/script.js
+// @downloadURL  https://raw.githubusercontent.com/sspoon865/helpscout-autorefresh/main/script.js
 // @supportURL   https://github.com/sspoon865/helpscout-autorefresh/issues
 // @grant        none
-// @run-at       document-end
+// @run-at       document-start
 // ==/UserScript==
 
 (function () {
 	'use strict';
 	
 	//Script configuration values
-	const RATE	= 15; //Number of seconds before page automatically refreshes
+	const RATE	= 30; //Number of seconds before page automatically refreshes
 	const RANGE = 7; //Number of days to compare to
 	
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
 	
-	let d = new Date(); //Current date in milliseconds
-	let e = new Date(d.now() - (86400000 * RANGE)); //Current date in milliseconds minus <RANGE> days
-	let cd = new Date(e.now() - 86400000); //Date in milliseconds of next compared day (one day back from <e>)
-	let ce = new Date(cd.now() - (86400000 * RANGE)); //Date in milliseconds of next compared day minus <RANGE> days
+	let dObj = new Date(); //Current date object
+	let d = dObj.getTime(); //In milliseconds
+	let eObj = new Date(d - 86400000 * (RANGE - 1)); //Current date minus <RANGE> days
+	let e = eObj.getTime(); //In milliseconds
+	let cdObj = new Date(e - 86400000); //Date of next compared day (one day back from <e>)
+	let cd = cdObj.getTime(); //In milliseconds
+	let ceObj = new Date(cd - 86400000 * (RANGE - 1)); //Date of next compared day minus <RANGE> days
+	let ce = ceObj.getTime(); //In milliseconds
 	
-	let dYear = d.getFullYear(); //Current year
-	let dMonth = d.getMonth() + 1; //Current month
-	let dDay = d.getDate(); //Current date
-	let eYear = e.getFullYear(); //Year as of <RANGE> days ago
-	let eMonth = e.getMonth() + 1; //Month as of <RANGE> days ago
-	let eDay = e.getDate(); //Date as of <RANGE> days ago
-	let cdYear = cd.getFullYear(); //Year as of <RANGE> - 1 days ago
-	let cdMonth = cd.getMonth() + 1; //Month as of <RANGE> - 1 days ago
-	let cdDay = cd.getDate(); //Date as of <RANGE> - 1 days ago
-	let ceYear = ce.getFullYear(); //Year as of <RANGE> - 1 - <RANGE> days ago
-	let ceMonth = ce.getMonth() + 1; //Month as of <RANGE> - 1 - <RANGE> days ago
-	let ceDay = ce.getDate(); //Date as of <RANGE> - 1 - <RANGE> days ago
+	let dYear = dObj.getFullYear(); //Current year
+	let dMonth = dObj.getMonth() + 1; //Current month
+	let dDay = dObj.getDate(); //Current date
+	let eYear = eObj.getFullYear(); //Year as of <RANGE> days ago
+	let eMonth = eObj.getMonth() + 1; //Month as of <RANGE> days ago
+	let eDay = eObj.getDate(); //Date as of <RANGE> days ago
+	let cdYear = cdObj.getFullYear(); //Year as of <RANGE> - 1 days ago
+	let cdMonth = cdObj.getMonth() + 1; //Month as of <RANGE> - 1 days ago
+	let cdDay = cdObj.getDate(); //Date as of <RANGE> - 1 days ago
+	let ceYear = ceObj.getFullYear(); //Year as of <RANGE> - 1 - <RANGE> days ago
+	let ceMonth = ceObj.getMonth() + 1; //Month as of <RANGE> - 1 - <RANGE> days ago
+	let ceDay = ceObj.getDate(); //Date as of <RANGE> - 1 - <RANGE> days ago
 	
 	//Convert date values to string literals
 	const START_DATE = `${dYear}-${dMonth}-${dDay}`;
