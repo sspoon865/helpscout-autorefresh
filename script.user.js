@@ -2,7 +2,7 @@
 // @author       Stephen
 // @name         Auto Refresh Helpscout Reports
 // @description  Refresh helpscout.net/reports/all-channels/ page automatically at a set interval.
-// @version      0.2.4
+// @version      0.2.5
 // @match        *://secure.helpscout.net/reports/all-channels/*
 // @namespace    https://github.com/sspoon865/helpscout-autorefresh
 // @source       https://raw.githubusercontent.com/sspoon865/helpscout-autorefresh/main/script.user.js
