@@ -53,5 +53,5 @@
 	const CMPR_END_DATE = `${ceYear}-${ceMonth}-${ceDay}`;
 	
 	//Redirect to reports page using previous comparison dates at a set interval of <RATE> seconds
-	setInterval(function () {window.location.href = `https://secure.helpscout.net/reports/all-channels/?customField1=19189&customField2=&range=${RANGE}&startDate=${END_DATE}&endDate=${START_DATE}&cmpRange=${RANGE}&cmpStartDate=${CMPR_END_DATE}&cmpEndDate=${CMPR_START_DATE}`;}, RATE * 1000);
+	setInterval(function () {window.location.href = `https://secure.helpscout.net/reports/all-channels/?customField1=19189&customField2=&range=${RANGE}&startDate=${END_DATE}&endDate=${START_DATE}&cmpRange=${RANGE}&cmpStartDate=${CMPR_END_DATE}&cmpEndDate=${CMPR_START_DATE}&viewId=39930&rows%5B%5D=mailboxid%3A198256&rows%5B%5D=cf19186%7CNE%7CFast-Weigh`;}, RATE * 1000);
 })();
